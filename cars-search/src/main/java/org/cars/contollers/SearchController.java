@@ -132,7 +132,7 @@ public class SearchController {
                 //Если заданы периоды, то удаляем модификации с другими периодами
                 if (periodBegin.isPresent()) {
                     for (Modification modification : tmpModifications) {
-                        if (modification.getPeriodBegin() != periodBegin.get()) {
+                        if (modification.getPeriodEnd() < periodBegin.get()) {
                             model.getModifications().remove(modification);
                         }
                     }
@@ -140,7 +140,7 @@ public class SearchController {
 
                 if (periodEnd.isPresent()) {
                     for (Modification modification : tmpModifications) {
-                        if (modification.getPeriodEnd() != periodEnd.get()) {
+                        if (modification.getPeriodBegin() > periodEnd.get()) {
                             model.getModifications().remove(modification);
                         }
                     }

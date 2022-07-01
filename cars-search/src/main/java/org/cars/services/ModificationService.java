@@ -29,27 +29,27 @@ public class ModificationService implements ServiceInterface<Modification> {
     }
 
     public List<Modification> getByNameAndPeriodBeginAndPeriodEnd(String name, int periodBegin, int periodEnd) {
-        return new ArrayList<>(modificationRepository.findByNameIgnoreCaseAndPeriodBeginAndPeriodEnd(name, periodBegin, periodEnd));
+        return new ArrayList<>(modificationRepository.findByNameIgnoreCaseAndPeriodBeginLessThanEqualAndPeriodEndGreaterThanEqual(name, periodEnd, periodBegin));
     }
 
     public List<Modification> getByNameAndPeriodBegin(String name, int periodBegin) {
-        return new ArrayList<>(modificationRepository.findByNameIgnoreCaseAndPeriodBegin(name, periodBegin));
+        return new ArrayList<>(modificationRepository.findByNameIgnoreCaseAndPeriodEndGreaterThanEqual(name, periodBegin));
     }
 
     public List<Modification> getByNameAndPeriodEnd(String name, int periodEnd) {
-        return new ArrayList<>(modificationRepository.findByNameIgnoreCaseAndPeriodEnd(name, periodEnd));
+        return new ArrayList<>(modificationRepository.findByNameIgnoreCaseAndPeriodBeginLessThanEqual(name, periodEnd));
     }
 
     public List<Modification> getByPeriodBeginAndPeriodEnd(int periodBegin, int periodEnd) {
-        return new ArrayList<>(modificationRepository.findByPeriodBeginAndPeriodEnd(periodBegin, periodEnd));
+        return new ArrayList<>(modificationRepository.findByPeriodBeginLessThanEqualAndPeriodEndGreaterThanEqual(periodEnd, periodBegin));
     }
 
     public List<Modification> getByPeriodBegin(int periodBegin) {
-        return new ArrayList<>(modificationRepository.findByPeriodBegin(periodBegin));
+        return new ArrayList<>(modificationRepository.findByPeriodEndGreaterThanEqual(periodBegin));
     }
 
     public List<Modification> getByPeriodEnd(int periodEnd) {
-        return new ArrayList<>(modificationRepository.findByPeriodEnd(periodEnd));
+        return new ArrayList<>(modificationRepository.findByPeriodBeginLessThanEqual(periodEnd));
     }
 
     @Override

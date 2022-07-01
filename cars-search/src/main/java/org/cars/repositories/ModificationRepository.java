@@ -1,6 +1,5 @@
 package org.cars.repositories;
 
-import org.cars.models.Model;
 import org.cars.models.Modification;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,15 +8,16 @@ import java.util.List;
 public interface ModificationRepository extends JpaRepository<Modification, Long> {
     List<Modification> findByNameIgnoreCase(String name);
 
-    List<Modification> findByNameIgnoreCaseAndPeriodBeginAndPeriodEnd(String name, int periodBegin, int periodEnd);
 
-    List<Modification> findByNameIgnoreCaseAndPeriodBegin(String name, int periodBegin);
+    List<Modification> findByNameIgnoreCaseAndPeriodBeginLessThanEqualAndPeriodEndGreaterThanEqual(String name, int periodBegin, int periodEnd);
 
-    List<Modification> findByNameIgnoreCaseAndPeriodEnd(String name, int periodEnd);
+    List<Modification> findByNameIgnoreCaseAndPeriodEndGreaterThanEqual(String name, int periodBegin);
 
-    List<Modification> findByPeriodBeginAndPeriodEnd(int periodBegin, int periodEnd);
+    List<Modification> findByNameIgnoreCaseAndPeriodBeginLessThanEqual(String name, int periodEnd);
 
-    List<Modification> findByPeriodBegin(int periodBegin);
+    List<Modification> findByPeriodBeginLessThanEqualAndPeriodEndGreaterThanEqual(int periodBegin, int periodEnd);
 
-    List<Modification> findByPeriodEnd(int periodEnd);
+    List<Modification> findByPeriodEndGreaterThanEqual(int periodBegin);
+
+    List<Modification> findByPeriodBeginLessThanEqual(int periodEnd);
 }
